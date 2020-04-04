@@ -1,18 +1,18 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
-import { HashRouter, Switch, Route } from "react-router-dom";
-import store from "./store/configureStore";
-import HomePage from "./containers/HomePage";
+import { ConnectedRouter } from "connected-react-router";
+import Routes from "./Routes";
+import configureStore, { history } from "./store/configureStore";
+
+const store = configureStore();
 
 const App = () => (
 	<Provider store={store}>
-		<HashRouter>
-			<Switch>
-				<Route path="/" exact component={HomePage} />
-			</Switch>
-		</HashRouter>
+		<ConnectedRouter history={history}>
+			<Routes />
+		</ConnectedRouter>
 	</Provider>
 );
 
